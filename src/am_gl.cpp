@@ -47,13 +47,13 @@
 
 #define check_for_errors { if (am_conf_check_gl_errors) check_glerror(__FILE__, __LINE__, __func__); }
 
-//#if defined(AM_ANDROID)
-//#define log_gl(fmt, ...) {am_log0(fmt "\n", __VA_ARGS__);}
-//#define log_gl_ptr(ptr, len)
-//#else
-#define log_gl(fmt, ...) {if (am_conf_log_gl_calls && am_conf_log_gl_frames > 0) {fprintf(gl_log_file, fmt "\n", __VA_ARGS__);fflush(gl_log_file);}}
-#define log_gl_ptr(ptr, len) {if (am_conf_log_gl_calls && am_conf_log_gl_frames > 0) {print_ptr(gl_log_file, (void*)ptr, len);fflush(gl_log_file);}}
-//#endif
+#if defined(AM_ANDROID)
+  #define log_gl(fmt, ...) {am_log0(fmt "\n", __VA_ARGS__);}
+  #define log_gl_ptr(ptr, len)
+#else
+  #define log_gl(fmt, ...) {if (am_conf_log_gl_calls && am_conf_log_gl_frames > 0) {fprintf(gl_log_file, fmt "\n", __VA_ARGS__);fflush(gl_log_file);}}
+  #define log_gl_ptr(ptr, len) {if (am_conf_log_gl_calls && am_conf_log_gl_frames > 0) {print_ptr(gl_log_file, (void*)ptr, len);fflush(gl_log_file);}}
+#endif
 
 static FILE *gl_log_file = NULL;
 
