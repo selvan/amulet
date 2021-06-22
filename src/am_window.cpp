@@ -455,6 +455,17 @@ static void draw_windows() {
             if (am_record_perf_timings) {
                 t0 = am_get_current_time();
             }
+            
+            am_debug("%s", "++++++++++++++++++++++++++++++++++++++++");
+            am_debug("%s,%d", "win->viewport_x:", win->viewport_x);
+            am_debug("%s,%d", "win->viewport_y:", win->viewport_y);
+            am_debug("%s,%d", "win->viewport_width:", win->viewport_width);
+            am_debug("%s,%d", "win->viewport_height:", win->viewport_height);
+            am_debug("%s,%d", "win->pixel_width:", win->pixel_width);
+            am_debug("%s,%d", "win->pixel_height:", win->pixel_height);
+            am_debug("%s,%d", "win->projection:", win->projection);
+            am_debug("%s", "++++++++++++++++++++++++++++++++++++++++");
+
             rstate->do_render(&roots[0], num_roots, 0, true, win->clear_color, win->stencil_clear_value,
                 win->viewport_x, win->viewport_y, win->viewport_width, win->viewport_height,
                 win->pixel_width, win->pixel_height,
