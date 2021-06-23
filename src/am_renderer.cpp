@@ -520,6 +520,13 @@ static void setup(am_render_state *rstate, am_framebuffer_id fb,
     rstate->active_viewport_state.set(x, y, w, h);
     rstate->active_viewport_state.bind(rstate, true);
 
+    am_debug("%s", "+++++++++++++++++++++++++++++++++++++++++");
+    am_debug("%s, %d", "x:", x);
+    am_debug("%s, %d", "y:", y);
+    am_debug("%s, %d", "w:", w);
+    am_debug("%s, %d", "h:", h);
+    am_debug("%s", "+++++++++++++++++++++++++++++++++++++++++");
+
     rstate->active_color_mask_state.set(true, true, true, true);
     rstate->active_color_mask_state.bind(rstate, true);
 
