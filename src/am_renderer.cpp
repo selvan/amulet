@@ -512,13 +512,13 @@ static void setup(am_render_state *rstate, am_framebuffer_id fb,
     int x, int y, int w, int h, int fbw, int fbh, glm::dmat4 proj,
     bool has_depthbuffer)
 {
-    if (fb != 0) {
-        // default framebuffer should be bound by backend-specific code
-        am_bind_framebuffer(fb);
-    }
+    // if (fb != 0) {
+    //     // default framebuffer should be bound by backend-specific code
+    //     am_bind_framebuffer(fb);
+    // }
 
-    rstate->active_viewport_state.set(x, y, w, h);
-    rstate->active_viewport_state.bind(rstate, true);
+    // rstate->active_viewport_state.set(x, y, w, h);
+    // rstate->active_viewport_state.bind(rstate, true);
 
     rstate->active_color_mask_state.set(true, true, true, true);
     rstate->active_color_mask_state.bind(rstate, true);
@@ -552,9 +552,9 @@ static void setup(am_render_state *rstate, am_framebuffer_id fb,
         am_clear_framebuffer(true, true, true);
     }
 
-    bool scissor_enabled = is_margin;
-    rstate->active_scissor_test_state.set(scissor_enabled, x, y, w, h);
-    rstate->active_scissor_test_state.bind(rstate, true);
+    // bool scissor_enabled = is_margin;
+    // rstate->active_scissor_test_state.set(scissor_enabled, x, y, w, h);
+    // rstate->active_scissor_test_state.bind(rstate, true);
 
     if (clear && (!is_margin ||
         clear_color.r != 0.0 || clear_color.g != 0.0 ||
