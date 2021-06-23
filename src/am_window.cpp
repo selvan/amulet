@@ -349,6 +349,13 @@ static bool update_size(am_window *win) {
         &win->screen_width, &win->screen_height);
     if (old_width != win->pixel_width || old_height != win->pixel_height) {
         compute_viewport(win);
+        am_debug("%s", "???????????????????????????????????");
+        am_debug("%s, %d", "screen_width:", win->screen_width);
+        am_debug("%s, %d", "screen_height:", win->screen_height);
+
+        am_debug("%s, %d", "pixel_width:", win->pixel_width);
+        am_debug("%s, %d", "pixel_height:", win->pixel_height);
+        am_debug("%s", "???????????????????????????????????");
         return true;
     }
     return false;
@@ -504,21 +511,26 @@ bool am_execute_actions(lua_State *L, double dt) {
     bool res = true;
     for (unsigned int i = 0; i < n; i++) {
         am_window *win = windows[i];
-        if (!win->needs_closing && win->scene != NULL) {
-            // make sure window size properties are up-to-date before running 
-            // actions.
-            update_size(win);
-            if (!am_execute_node_actions(L, win->scene)) {
-                res = false;
-                break;
-            }
-            if (win->overlay != NULL && !am_execute_node_actions(L, win->overlay)) {
-                res = false;
-                break;
-            }
-            win->push(L);
-            am_call_amulet(L, "_clear_events", 1, 0);
+
+        if (win->needs_closing) {
+          continue;
         }
+        // make sure window size properties are up-to-date before running 
+        // actions.
+        update_size(win);
+        if(win->scene == NULL) {
+          continue;
+        }
+        if (!am_execute_node_actions(L, win->scene)) {
+            res = false;
+            break;
+        }
+        if (win->overlay != NULL && !am_execute_node_actions(L, win->overlay)) {
+            res = false;
+            break;
+        }
+        win->push(L);
+        am_call_amulet(L, "_clear_events", 1, 0);
     }
     am_post_frame(L);
     if (am_record_perf_timings) {
