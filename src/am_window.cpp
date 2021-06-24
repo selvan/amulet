@@ -466,7 +466,7 @@ static void draw_windows() {
             am_debug("%s,%d", "win->projection:", win->projection);
             am_debug("%s", "++++++++++++++++++++++++++++++++++++++++");
 
-            rstate->do_render(&roots[0], num_roots, 0, true, win->clear_color, win->stencil_clear_value,
+            rstate->do_render(&roots[0], num_roots, 1, true, win->clear_color, win->stencil_clear_value,
                 win->viewport_x, win->viewport_y, win->viewport_width, win->viewport_height,
                 win->pixel_width, win->pixel_height,
                 win->projection, win->has_depth_buffer);

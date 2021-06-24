@@ -512,10 +512,10 @@ static void setup(am_render_state *rstate, am_framebuffer_id fb,
     int x, int y, int w, int h, int fbw, int fbh, glm::dmat4 proj,
     bool has_depthbuffer)
 {
-    // if (fb != 0) {
-    //     // default framebuffer should be bound by backend-specific code
-    //     am_bind_framebuffer(fb);
-    // }
+    if (fb != 0) {
+        // default framebuffer should be bound by backend-specific code
+        am_bind_framebuffer(fb);
+    }
 
     // rstate->active_viewport_state.set(x, y, w, h);
     // rstate->active_viewport_state.bind(rstate, true);

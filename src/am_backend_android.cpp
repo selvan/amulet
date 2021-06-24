@@ -386,7 +386,7 @@ void am_destroy_native_window(am_native_window *window) {
 }
 
 void am_native_window_bind_framebuffer(am_native_window *win) {
-    am_bind_framebuffer(0); // XXX Not sure if default framebuffer is guaranteed to be zero.
+    am_bind_framebuffer(1); // XXX Not sure if default framebuffer is guaranteed to be zero.
 }
 
 void am_native_window_swap_buffers(am_native_window *window) {
